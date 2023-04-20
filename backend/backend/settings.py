@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     
     'messages_control',
-    'users',
+    'user_control',
 ]
 
 REST_FRAMEWORK = {
@@ -53,6 +53,8 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
+AUTH_USER_MODEL = 'user_control.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

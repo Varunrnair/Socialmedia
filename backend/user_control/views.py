@@ -15,8 +15,8 @@ class RegisterView(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.save()
-            return Response({'status': 'success', 'user_id': user.id})
+            people = serializer.save()
+            return Response({'status': 'success', 'user_id': people.id})
         else:
             return Response(serializer.errors, status=400)
 
@@ -29,9 +29,9 @@ class LoginView(APIView):
         if serializer.is_valid():
             email = serializer.validated_data['email']
             password = serializer.validated_data['password']
-            user = authenticate(request, email=email, password=password)
-            if user is not None:
-                login(request, user)
+            people = authenticate(request, email=email, password=password)
+            if people is not None:
+                login(request, people)
                 return Response({'status': 'success'})
             else:
                 return Response({'status': 'failed', 'message': 'Invalid credentials'}, status=401)
@@ -41,7 +41,7 @@ class LoginView(APIView):
 class display(APIView):
     serializer_class=UserSerializer
     def get(self,request):
-        queryset = User.objects.all()
+        queryset = CustomUser.objects.all()
         serializer = UserSerializer(queryset, many=True)
         return Response(serializer.data)
         
