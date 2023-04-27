@@ -5,7 +5,7 @@ from .models import CustomUser
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['firstname', 'email']
+        fields = ['first_name', 'email']
 
 class RegisterSerializer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=32,min_length=8,write_only = True)
