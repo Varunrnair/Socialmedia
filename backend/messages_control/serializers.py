@@ -13,8 +13,8 @@ class MessageSerializer(serializers.ModelSerializer):
 
     def get_receiver_data(self, obj):
         from user_control.serializers import UserSerializer
-        return UserSerializer(obj.receiver.user).data
+        return UserSerializer(obj.receiver.email).data
 
     def get_sender_data(self, obj):
         from user_control.serializers import UserSerializer
-        return UserSerializer(obj.sender.user).data
+        return UserSerializer(obj.sender.email).data
